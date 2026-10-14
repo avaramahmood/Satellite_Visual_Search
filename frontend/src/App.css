@@ -1,0 +1,233 @@
+/* ── Root ── */
+.app-root {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: #03070f; /* fallback only; SpaceBackground provides the starfield */
+}
+
+/* ─────────────────────────────────────────
+   Left gradient — makes hero text legible
+   over the globe background
+───────────────────────────────────────── */
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  /* Subtle edge feather where globe starts; left is pure bg */
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 32%,
+    rgba(3, 7, 15, 0.35) 40%,
+    rgba(3, 7, 15, 0.1) 52%,
+    transparent 60%
+  );
+}
+
+/* ─────────────────────────────────────────
+   Hero section
+───────────────────────────────────────── */
+.hero {
+  position: absolute;
+  left: 6vw;
+  top: 55%;
+  transform: translateY(-50%);
+  z-index: 20;
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.hero[data-hidden="true"] {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-18px);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.9;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1.5px;
+  background: var(--primary);
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 8.5vw, 8rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin: 0;
+  text-shadow: 0 4px 64px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title-accent {
+  /* Gradient on "Visual" */
+  background: linear-gradient(
+    115deg,
+    var(--primary) 0%,
+    color-mix(in oklch, var(--primary) 60%, oklch(0.72 0.22 240)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--muted-foreground);
+  margin: 0;
+  max-width: 32rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary {
+  padding: 0.75rem 1.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: var(--radius-xl);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  transition: filter 0.18s, transform 0.18s;
+}
+
+.hero-btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.hero-btn-ghost {
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: transparent;
+  color: var(--foreground);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.15s, border-color 0.15s, transform 0.18s;
+}
+
+.hero-btn-ghost:hover {
+  opacity: 1;
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────
+   Feature popup
+───────────────────────────────────────── */
+.feature-popup {
+  position: absolute;
+  left: 1.5rem;
+  /* Centre in the viewport area below the navbar (4.25rem) */
+  top: calc(4.25rem + (100svh - 4.25rem) / 2);
+  transform: translateY(-50%) translateX(-115%);
+  z-index: 30;
+  width: 26rem;
+  max-height: calc(100svh - 6rem);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--card) 90%, transparent);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(255 255 255 / 0.04) inset;
+  opacity: 0;
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.feature-popup[data-open="true"] {
+  transform: translateY(-50%) translateX(0);
+  /* keep same vertical centre, just slide in horizontally */
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.125rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.popup-title {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.popup-close {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted-foreground);
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.popup-close:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.popup-body {
+  padding: 1.125rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.popup-body::-webkit-scrollbar { width: 3px; }
+.popup-body::-webkit-scrollbar-track { background: transparent; }
+.popup-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }

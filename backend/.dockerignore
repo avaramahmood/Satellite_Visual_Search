@@ -1,0 +1,6 @@
+.venv
+__pycache__
+tmp
+session_context
+.env
+=1.30.0

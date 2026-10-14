@@ -1,0 +1,341 @@
+.vlm-chat-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 420px;
+  gap: 0;
+}
+
+.vlm-status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.vlm-status-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #e53e3e;
+  flex-shrink: 0;
+}
+
+.vlm-status-indicator[data-online="true"] {
+  background: #38a169;
+}
+
+.vlm-status-text {
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}
+
+.vlm-subtitle {
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+  margin: 0 0 0.75rem;
+  opacity: 0.7;
+}
+
+.vlm-chat-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  min-height: 0;
+}
+
+.vlm-chat-area::-webkit-scrollbar { width: 3px; }
+.vlm-chat-area::-webkit-scrollbar-track { background: transparent; }
+.vlm-chat-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
+.vlm-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+}
+
+.vlm-empty-icon {
+  font-size: 1.75rem;
+  opacity: 0.5;
+}
+
+.vlm-empty-title {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  margin: 0;
+  text-align: center;
+}
+
+.vlm-empty-hint {
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+  opacity: 0.55;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.vlm-message {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.vlm-message p {
+  font-size: 0.8125rem;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.vlm-message-user {
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+}
+
+.vlm-toolbar {
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.vlm-toolbar-row1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vlm-report-btn {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.vlm-report-btn:hover {
+  border-color: var(--primary);
+  color: var(--foreground);
+}
+
+.vlm-mode-toggle {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.vlm-mode-btn {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.05em;
+}
+
+.vlm-mode-btn[data-active="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.vlm-toolbar-row2 {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.vlm-input {
+  flex: 1;
+  font-size: 0.8125rem;
+}
+
+.vlm-send-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: 0 0.875rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  transition: filter 0.15s;
+  white-space: nowrap;
+  height: 2.25rem;
+}
+
+.vlm-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.vlm-send-btn:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+/* ── Session tag ─────────────────────────────────────────────────────────── */
+.vlm-session-tag {
+  margin-left: auto;
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  color: rgba(255, 100, 40, 0.7);
+  background: rgba(255, 100, 40, 0.08);
+  border: 1px solid rgba(255, 100, 40, 0.2);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  white-space: nowrap;
+}
+
+/* ── Context loaded banner ───────────────────────────────────────────────── */
+.vlm-context-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 100, 40, 0.2);
+  background: rgba(255, 100, 40, 0.06);
+  font-size: 0.66rem;
+  font-family: var(--font-mono);
+  color: rgba(255, 100, 40, 0.8);
+  letter-spacing: 0.02em;
+}
+
+.vlm-context-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff6428;
+  box-shadow: 0 0 5px #ff6428;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── Assistant + error messages ──────────────────────────────────────────── */
+.vlm-message-assistant {
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+}
+
+.vlm-message-system {
+  background: rgba(255, 100, 40, 0.05);
+  border-left: 2px solid rgba(255, 100, 40, 0.4);
+}
+.vlm-message-system p {
+  font-size: 0.72rem;
+  color: rgba(255, 100, 40, 0.8);
+  font-family: var(--font-mono);
+}
+
+.vlm-message-error {
+  background: rgba(239, 68, 68, 0.06);
+  border-left: 2px solid rgba(239, 68, 68, 0.4);
+}
+.vlm-message-error p {
+  color: #f87171;
+  font-size: 0.75rem;
+}
+
+/* ── Typing indicator ────────────────────────────────────────────────────── */
+.vlm-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 0.875rem;
+}
+
+.vlm-dot-1, .vlm-dot-2, .vlm-dot-3 {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted-foreground);
+  animation: bounce 1.2s ease-in-out infinite;
+}
+.vlm-dot-2 { animation-delay: 0.2s; }
+.vlm-dot-3 { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+  40%           { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Report button (disabled state) ─────────────────────────────────────── */
+.vlm-report-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Pre-computed metrics panel ──────────────────────────────────────────── */
+.vlm-metrics-panel {
+  background: rgba(255, 100, 40, 0.04);
+  border: 1px solid rgba(255, 100, 40, 0.18);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.vlm-metrics-header {
+  margin-bottom: 0.45rem;
+}
+
+.vlm-metrics-title {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: rgba(255, 100, 40, 0.85);
+  font-weight: 600;
+}
+
+.vlm-metrics-source {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.vlm-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.3rem 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.vlm-metric-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.vlm-metric-label {
+  font-size: 0.58rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.vlm-metric-value {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.vlm-metrics-note {
+  font-size: 0.6rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  opacity: 0.6;
+  margin: 0;
+}

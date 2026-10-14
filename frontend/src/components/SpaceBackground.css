@@ -1,0 +1,30 @@
+.space-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  /*
+   * 200% wide so we can translateX(-50%) seamlessly.
+   * background-repeat: repeat-x tiles the night-sky across the full width,
+   * giving a continuous star field with no seam.
+   */
+  width: 200%;
+  z-index: 0;
+  background: #03070f url("//unpkg.com/three-globe/example/img/night-sky.png")
+    0 center / auto 100% repeat-x;
+  filter: brightness(2.2) contrast(1.4) saturate(1.2);
+
+  /*
+   * Match globe.gl autoRotateSpeed = 0.28
+   * Three.js OrbitControls: °/s = 360 × 0.28 / 60 = 1.68°/s
+   * Full revolution = 360 / 1.68 ≈ 214s
+   * translateX(-50%) moves exactly one screen-width in that time → seamless loop.
+   * Direction: negative X = stars drift left, matching globe eastward autoRotate.
+   */
+  animation: space-drift 214s linear infinite;
+}
+
+@keyframes space-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

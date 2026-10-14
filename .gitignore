@@ -1,24 +1,41 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# ── Dependencies / build ──────────────────────────────────────────────────────
+node_modules/
+dist/
+dist-ssr/
+backend/.venv/
+__pycache__/
+*.pyc
 
-node_modules
-dist
-dist-ssr
+# ── Secrets ───────────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
 *.local
 
-# Editor directories and files
+# ── Runtime state / generated data ────────────────────────────────────────────
+backend/tmp/
+backend/session_context/
+scripts/thumbs/
+demo_dataset/
+
+# ── Reports / documents (not part of the code) ────────────────────────────────
+docs/
+*.docx
+*.pdf
+*.pptx
+*.odt
+
+# ── Local data (65 GB — lives in Supabase for the cloud demo) ─────────────────
+database/
+
+# ── Editor / OS / tooling ─────────────────────────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
+.claude/
 .DS_Store
+.~lock.*
 *.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
+logs/
+*.log

@@ -1,0 +1,110 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 40;
+  height: 4.25rem;
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+  gap: 1rem;
+  background: linear-gradient(to bottom, rgba(3,7,15,0.88) 0%, rgba(3,7,15,0.3) 70%, transparent 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255 255 255 / 0.045);
+}
+
+/* ── Logo ── */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo-glyph {
+  font-size: 1rem;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.navbar-logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--foreground);
+}
+
+/* ── Spacer ── */
+.navbar-spacer {
+  flex: 1;
+}
+
+/* ── Nav items ── */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  flex-shrink: 0;
+}
+
+.navbar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.375rem 0.9rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.navbar-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0.15rem;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 55%;
+  height: 1.5px;
+  background: var(--primary);
+  border-radius: 999px;
+  transition: transform 0.2s ease;
+}
+
+.navbar-item:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--primary) 10%, transparent);
+}
+
+.navbar-item[data-active="true"] {
+  color: var(--foreground);
+}
+
+.navbar-item[data-active="true"]::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Live Search pulse dot */
+.navbar-item-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(0.7); }
+}
